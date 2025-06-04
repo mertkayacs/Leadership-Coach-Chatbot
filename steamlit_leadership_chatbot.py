@@ -159,11 +159,11 @@ def answer_pipeline(question):
     context, docs = get_memory_context(question)
 
     if len(context.strip()) < 100:
-        st.warning("Konu liderlik koçluğu ile yeterince alakalı değil. Google'dan sizin için bunları buldum.")
+        st.warning("Konu hakkında yeterince bilgim yok. Google'dan sizin için bunları buldum.")
         return do_google_fallback(question) + ("Google",)
 
     if not ask_if_relevant_enough(question, context):
-        st.warning("Konu liderlik koçluğu ile yeterince alakalı değil. Google'dan sizin için bunları buldum.")
+        st.warning("Konu hakkında yeterince bilgim yok. Google'dan sizin için bunları buldum.")
         return do_google_fallback(question) + ("Google",)
 
     answer = generate_answer(question, context)
