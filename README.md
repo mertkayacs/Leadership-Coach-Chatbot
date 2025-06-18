@@ -75,7 +75,7 @@ streamlit run streamlit_leadership_chatbot.py
 
 ## 📝 Notes
 
-- Ensure you have OpenAI API and Google Search keys configured via environment variables or directly in the script.
+- ! Ensure you have OpenAI API and Google Search keys configured via environment variables or directly in the script.
 - All embeddings are loaded from local JSON, no database or vector server required.
 
 ---
