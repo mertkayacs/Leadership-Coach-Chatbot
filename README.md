@@ -1,37 +1,86 @@
-# 🧠 Leadership Coach Chatbot
+# 🧠 Leadership-Coach-Chatbot
 
-A Turkish-language leadership coach chatbot that blends **GPT-4**, **local embeddings**, **Weaviate**, and **Google Search API** into a Streamlit-based interface. Designed to assist users with leadership principles, self-growth, and strategic coaching conversations.
+A Turkish leadership coach chatbot built with **local embeddings** and **GPT-4**, supported by Google search fallback.
 
+This chatbot is designed to provide answers and insights related to leadership topics using a combination of similarity-based retrieval and advanced language modeling.
 
 ---
 
-## 🚀 Features
+## 🔧 Features
 
-- ✅ GPT-4 responses with fallback to Google Search when context is insufficient
-- ✅ Local JSON chunks with HuggingFace embeddings
-- ✅ Weaviate vector database integration
-- ✅ Google Search API for supplementing weak responses
-- ✅ Streamlit frontend with dark mode UI
-- ✅ File-based document chunking and upload
-- ✅ Whisper-based transcript preprocessing
-- ✅ Turkish language support 🇹🇷
+- 💬 **Chat interface** with Streamlit
+- 📁 Uses **local JSON embedding chunks**
+- 🔍 **Google Search fallback** if no relevant answer is found
+- 🤖 Powered by **GPT-4** (via OpenAI)
+- 🌐 Turkish-language focused
+- 🧠 Embedding model: `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`
+
+---
+
+## 🖼️ Screenshot
+
+Here’s a quick look at the interface:
+
+![Chatbot Screenshot](screenshots/1.png)
 
 ---
 
 ## 📁 Project Structure
 
+```
+Leadership-Coach-Chatbot/
+├── streamlit_leadership_chatbot.py   # Main Streamlit app
+├── transcript_maker_whisper.py       # (Optional) transcript preprocessor
+├── turkish_chunks.json               # Precomputed embedding chunks
+├── upload_to_weaviate.py             # ❌ Not used in this version
+├── requirements.txt
+├── README.md
+└── screenshots/
+    └── 1.png                         # Interface screenshot
+```
+
+---
+
+## 🚀 How to Run
+
+1. **Clone the repo**:
+
 ```bash
-.
-├── .streamlit/                  # Streamlit theme and settings
-├── .devcontainer/               # Optional devcontainer support
-├── screenshots/                 # UI screenshots
-├── audio_downloader.py          # Audio utility for preprocessing
-├── jsontocsv.py                 # Convert transcripts to CSV
-├── prepare_transcripts.py       # Format for embedding
-├── transcript_maker_whisper.py  # Whisper transcription
-├── upload_to_weaviate.py        # Upload local JSON chunks
-├── upoad_weaviate_cloud.py      # Upload to Weaviate Cloud
-├── turkish_chunks.json          # Turkish content chunks
-├── requirements.txt             # Python dependencies
-├── README.md                    # You're here
-└── steamlit_leadership_chatbot.py # Main Streamlit app
+git clone https://github.com/mertkayacs/Leadership-Coach-Chatbot.git
+cd Leadership-Coach-Chatbot
+```
+
+2. **Install dependencies**:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. **Run the Streamlit app**:
+
+```bash
+streamlit run streamlit_leadership_chatbot.py
+```
+
+---
+
+## ⚙️ How It Works
+
+- First, the user’s question is embedded using a multilingual embedding model.
+- It’s matched against preloaded chunks (`turkish_chunks.json`) using cosine similarity.
+- If the match score is above a threshold, GPT-4 responds using only the matched context.
+- Otherwise, the chatbot uses **Google search results** to help answer.
+
+---
+
+## 📝 Notes
+
+- Ensure you have OpenAI API and Google Search keys configured via environment variables or directly in the script.
+- All embeddings are loaded from local JSON, no database or vector server required.
+
+---
+
+## 🙏 Credits
+
+Built by **Mert Kaya** \
+Feel free to fork, extend, or contribute to the project. 
