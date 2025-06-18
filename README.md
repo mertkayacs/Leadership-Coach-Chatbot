@@ -4,6 +4,8 @@ A Turkish leadership coach chatbot built with **local embeddings** and **GPT-4**
 
 This chatbot is designed to provide answers and insights related to leadership topics using a combination of similarity-based retrieval and advanced language modeling.
 
+
+
 ---
 
 ## 🔧 Features
@@ -23,7 +25,14 @@ Here’s a quick look at the interface:
 
 ![Chatbot Screenshot](screenshots/1.png)
 
+![Chatbot Screenshot](screenshots/2.png)
+
 ---
+
+### 🔗 Demo
+
+[![Try it out]](https://aiturkishleadershipcoach.streamlit.app/)
+
 
 ## 📁 Project Structure
 
