@@ -1,95 +1,43 @@
-# 🧠 Leadership-Coach-Chatbot
+# Leadership-Coach-Chatbot
 
-A Turkish leadership coach chatbot built with **local embeddings** and **GPT-4**, supported by Google search fallback.
+A Turkish leadership coach chatbot built with Streamlit. It answers leadership questions from a local set of transcript chunks using embedding similarity and GPT-4o, and falls back to Google search when the local content is not relevant.
 
-This chatbot is designed to provide answers and insights related to leadership topics using a combination of similarity-based retrieval and advanced language modeling.
+## How to Run
 
-
-
----
-
-## 🔧 Features
-
-- 💬 **Chat interface** with Streamlit
-- 📁 Uses **local JSON embedding chunks**
-- 🔍 **Google Search fallback** if no relevant answer is found
-- 🤖 Powered by **GPT-4** (via OpenAI)
-- 🌐 Turkish-language focused
-- 🧠 Embedding model: `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`
-
----
-
-## 🖼️ Screenshot
-
-Here’s a quick look at the interface:
-
-![Chatbot Screenshot](screenshots/1.png)
-
-![Chatbot Screenshot](screenshots/2.png)
-
----
-
-### 🔗 Demo
-
-[![Try it out]](https://aiturkishleadershipcoach.streamlit.app/)
-
-
-## 📁 Project Structure
-
-```
-Leadership-Coach-Chatbot/
-├── streamlit_leadership_chatbot.py   # Main Streamlit app
-├── transcript_maker_whisper.py       # (Optional) transcript preprocessor
-├── turkish_chunks.json               # Precomputed embedding chunks
-├── upload_to_weaviate.py             # ❌ Not used in this version
-├── requirements.txt
-├── README.md
-└── screenshots/
-    └── 1.png                         # Interface screenshot
-```
-
----
-
-## 🚀 How to Run
-
-1. **Clone the repo**:
+1. Clone the repo and install dependencies:
 
 ```bash
 git clone https://github.com/mertkayacs/Leadership-Coach-Chatbot.git
 cd Leadership-Coach-Chatbot
-```
-
-2. **Install dependencies**:
-
-```bash
 pip install -r requirements.txt
 ```
 
-3. **Run the Streamlit app**:
+2. Set the required API keys as environment variables. `OPENAI_API_KEY` is required by `langchain-openai`. `GOOGLE_API_KEY` and `GOOGLE_CSE_ID` (a Programmable Search Engine ID) are required for the Google search fallback.
+
+3. Start the app:
 
 ```bash
-streamlit run streamlit_leadership_chatbot.py
+streamlit run steamlit_leadership_chatbot.py
 ```
 
----
+On first load the app encodes the chunks from `turkish_chunks.json` with the local embedding model. No database or vector server is needed.
 
-## ⚙️ How It Works
+The data preparation scripts (`audio_downloader.py`, `transcript_maker_whisper.py`, `prepare_transcripts.py`) download a YouTube playlist with yt-dlp, transcribe it with Whisper, and chunk the transcripts into `turkish_chunks.json`. They are only needed to rebuild the data. The Weaviate upload scripts are not used by the app.
 
-- First, the user’s question is embedded using a multilingual embedding model.
-- It’s matched against preloaded chunks (`turkish_chunks.json`) using cosine similarity.
-- If the match score is above a threshold, GPT-4 responds using only the matched context.
-- Otherwise, the chatbot uses **Google search results** to help answer.
+## Screenshots
 
----
+![Chat interface](screenshots/1.png)
 
-## 📝 Notes
+![Answer with sources](screenshots/2.png)
 
-- ! Ensure you have OpenAI API and Google Search keys configured via environment variables or directly in the script.
-- All embeddings are loaded from local JSON, no database or vector server required.
+## Tech Used
 
----
+- Python, Streamlit
+- sentence-transformers (`paraphrase-multilingual-MiniLM-L12-v2`) for local embeddings
+- scikit-learn for cosine similarity
+- LangChain: `langchain-openai` (GPT-4o), `langchain-google-community` (Google search fallback)
+- OpenAI Whisper and yt-dlp for transcript preparation
 
-## 🙏 Credits
+## Status
 
-Built by **Mert Kaya** \
-Feel free to fork, extend, or contribute to the project. 
+Side project, 2025.
