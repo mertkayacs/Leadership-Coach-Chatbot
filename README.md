@@ -48,6 +48,49 @@ The app keeps retrieval small and shows where each answer comes from.
 | <img src="docs/assets/readme/icons/search.svg" width="18" height="18" alt=""> **Google fallback** | When the relevance check says the local chunks do not cover the question, the app queries the Google Programmable Search API for three results. |
 | <img src="docs/assets/readme/icons/file-json.svg" width="18" height="18" alt=""> **Data you can rebuild** | The chunks file holds video title, text and source URL. Scripts for yt-dlp, Whisper transcription and chunking rebuild it from a YouTube playlist. |
 
+## A quick tour
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/tour/ask-dark.webp">
+        <img src="docs/assets/readme/tour/ask-light.webp" alt="Leadership Coach Chatbot with a Turkish question in the input box and the start of the answer">
+      </picture>
+      <h3>Ask a question</h3>
+      Type a leadership question in Turkish and press Cevapla to get an answer.
+    </td>
+    <td width="50%" valign="top">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/tour/sources-dark.webp">
+        <img src="docs/assets/readme/tour/sources-light.webp" alt="Leadership Coach Chatbot answer followed by a sources list of three interview titles">
+      </picture>
+      <h3>Answer and sources</h3>
+      Each answer ends with the interview titles it was built from.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/tour/retrieval-dark.webp">
+        <img src="docs/assets/readme/tour/retrieval-light.webp" alt="Code card of the chunk loading and get_memory_context functions">
+      </picture>
+      <h3>Local retrieval</h3>
+      The question is embedded locally and the three most similar chunks are picked by cosine similarity.
+    </td>
+    <td width="50%" valign="top">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/tour/pipeline-dark.webp">
+        <img src="docs/assets/readme/tour/pipeline-light.webp" alt="Code card of the answer_pipeline function with the Google fallback branches">
+      </picture>
+      <h3>Answer pipeline</h3>
+      A short context or a failed relevance check sends the question to Google. Otherwise GPT-4o answers from the chunks.
+    </td>
+  </tr>
+</table>
+
+<p align="center"><sub>Screenshots come from the Streamlit app. Code cards show the files as they are in the repository.</sub></p>
+
 ## Features
 
 **Chat**
