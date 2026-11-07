@@ -5,7 +5,7 @@
   </picture>
 </p>
 
-<h1 align="center">Ask a leadership question in Turkish. Get an answer with its sources.</h1>
+<h1 align="center">Ask a leadership question in Turkish.<br>Get an answer with its sources.</h1>
 
 <p align="center">
   A Turkish-language leadership coach chatbot built with Streamlit.<br>
@@ -73,7 +73,7 @@ The app keeps retrieval small and shows where each answer comes from.
     <td width="50%" valign="top">
       <picture>
         <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/tour/retrieval-dark.webp">
-        <img src="docs/assets/readme/tour/retrieval-light.webp" alt="Code card of the chunk loading and get_memory_context functions">
+        <img src="docs/assets/readme/tour/retrieval-light.webp" alt="Code card of the get_memory_context function">
       </picture>
       <h3>Local retrieval</h3>
       The question is embedded locally and the three most similar chunks are picked by cosine similarity.
